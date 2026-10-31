@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA MOTORS | Bespoke Hypercars & Atelier Vault</title>
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Luxury Headlines (Syne/Cinzel) + High-legibility UI (Plus Jakarta Sans) + Technical (Space Grotesk) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <script src="/tailwind-config.js"></script>
+        <link rel="stylesheet" href="/src/styles.css">
+</head>
+<body class="min-h-screen flex flex-col bg-obsidian-grid selection:bg-champagne selection:text-obsidian">
+
+  
+    <div class="bg-charcoal border-b border-titaniumBorder py-2 px-4 sm:px-8 text-xs font-mono-tag flex flex-wrap justify-between items-center text-gray-400">
+        <div class="flex items-center space-x-3">
+            <span class="inline-block w-2 h-2 rounded-full bg-emeraldLive animate-ping"></span>
+            <span class="tracking-widest uppercase text-[11px] text-gray-300">AURA PRIVATE VAULT • LIVE ALLOCATION MATRIX #AUR-2026</span>
+        </div>
+        <div class="flex items-center space-x-6 text-[11px]">
+            <span class="hidden md:inline"><i class="fa-solid fa-earth-americas text-champagne mr-1.5"></i> SHOWROOMS: MONACO • DUBAI • LONDON • TOKYO • ZURICH</span>
+            
+           
+            <div class="flex items-center space-x-2 bg-obsidian px-2.5 py-1 border border-titaniumBorder">
+                <i class="fa-solid fa-coins text-champagne"></i>
+                <select id="currencySelector" onchange="switchCurrency(this.value)" class="bg-transparent text-champagne font-bold focus:outline-none cursor-pointer">
+                    <option value="USD">$ USD ($)</option>
+                    <option value="EUR">€ EUR (€)</option>
+                    <option value="GBP">£ GBP (£)</option>
+                    <option value="KZT">₸ KZT (₸)</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+   
+    <header class="sticky top-0 z-40 bg-obsidian/90 backdrop-blur-2xl border-b border-titaniumBorder transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            
+            <a href="#" onclick="switchView('home')" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 border border-champagne/50 bg-charcoal flex items-center justify-center transition-transform group-hover:scale-105 group-hover:border-champagne gold-glow">
+                    <span class="font-serif-display font-bold text-2xl text-champagne">A</span>
+                </div>
+                <div>
+                    <span class="font-serif-display font-bold text-2xl tracking-widest text-white block leading-none">AURA</span>
+                    <span class="font-mono-tag text-[9px] text-champagne tracking-[0.3em] block mt-0.5">MOTORS ATELIER</span>
+                </div>
+            </a>
+
+         
+            <nav class="hidden lg:flex items-center space-x-8 text-xs font-mono-tag uppercase tracking-widest text-gray-300">
+                <button onclick="switchView('home')" id="nav-home" class="nav-btn text-champagne border-b-2 border-champagne py-1.5 transition">
+                    Home
+                </button>
+                <button onclick="switchView('showroom')" id="nav-showroom" class="nav-btn hover:text-champagne py-1.5 transition">
+                    Showroom
+                </button>
+                <button onclick="switchView('atelier')" id="nav-atelier" class="nav-btn hover:text-champagne py-1.5 transition">
+                    360° Atelier
+                </button>
+                <button onclick="switchView('soundlab')" id="nav-soundlab" class="nav-btn hover:text-champagne py-1.5 transition">
+                    Sound Lab
+                </button>
+                <button onclick="switchView('valuation')" id="nav-valuation" class="nav-btn hover:text-champagne py-1.5 transition">
+                    Valuation
+                </button>
+                <button onclick="switchView('concierge')" id="nav-concierge" class="nav-btn hover:text-champagne py-1.5 transition">
+                    VIP Concierge
+                </button>
+            </nav>
+
+           
+            <div class="hidden md:flex items-center space-x-4">
+                <button onclick="switchView('garage')" class="relative px-4 py-2.5 border border-titaniumBorder hover:border-champagne text-xs font-mono-tag text-gray-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-bookmark text-champagne"></i>
+                    <span>GARAGE</span>
+                    <span id="garageBadge" class="bg-champagne text-obsidian font-bold px-1.5 py-0.2 text-[10px] rounded-xs">0</span>
+                </button>
+                <button onclick="switchView('showroom')" class="px-5 py-2.5 bg-champagne text-obsidian font-mono-tag font-bold text-xs uppercase tracking-wider hover:bg-champagneLight transition gold-glow">
+                    Acquire Allocation
+                </button>
+            </div>
+
+          
+            <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 text-champagne border border-titaniumBorder">
+                <i class="fa-solid fa-bars text-lg" id="mobileIcon"></i>
+            </button>
+        </div>
+
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-charcoal border-b border-titaniumBorder px-6 py-6 space-y-4 font-mono-tag text-xs uppercase">
+            <button onclick="switchView('home'); toggleMobileMenu()" class="block w-full text-left py-2 text-champagne">1. Home Land</button>
+            <button onclick="switchView('showroom'); toggleMobileMenu()" class="block w-full text-left py-2 text-gray-300">2. Showroom Vault</button>
+            <button onclick="switchView('atelier'); toggleMobileMenu()" class="block w-full text-left py-2 text-gray-300">3. 360° Atelier Configurator</button>
+            <button onclick="switchView('soundlab'); toggleMobileMenu()" class="block w-full text-left py-2 text-gray-300">4. Engine Sound Lab</button>
+            <button onclick="switchView('valuation'); toggleMobileMenu()" class="block w-full text-left py-2 text-gray-300">5. Trade-In Valuation Wizard</button>
+            <button onclick="switchView('concierge'); toggleMobileMenu()" class="block w-full text-left py-2 text-gray-300">6. VIP Concierge & Map</button>
+            <button onclick="switchView('garage'); toggleMobileMenu()" class="block w-full text-left py-2 text-gray-300">7. Saved Garage & Compare</button>
+        </div>
+    </header>
+
+    
+    <div id="toastContainer" class="fixed top-24 right-6 z-50 space-y-3 pointer-events-none"></div>
+
+    
+    <main class="flex-grow">
+
+      
+        <section id="view-home" class="view-panel block">
+            <!-- Hero Banner -->
+            <div class="home-hero relative min-h-[85vh] flex items-center border-b border-titaniumBorder overflow-hidden py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-8 z-10">
+                        <div class="inline-flex items-center space-x-3 border border-champagne/40 bg-charcoal/80 backdrop-blur-md px-3.5 py-1.5 text-xs font-mono-tag text-champagne">
+                            <span class="w-2 h-2 rounded-full bg-champagne animate-ping"></span>
+                            <span>AURA MOTORS • PERFORMANCE WITHOUT COMPROMISE</span>
+                        </div>
+
+                        <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05]">
+                            AURA APEX<br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-champagne via-champagneLight to-amber-500 italic font-serif-display">S COUPÉ</span>
+                        </h1>
+
+                        <p class="text-gray-300 text-sm sm:text-base font-light max-w-xl leading-relaxed">
+                            For the few who know the difference. Discover a collection shaped by precision, power, and unmistakable design.
+                        </p>
+
+                        
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <button onclick="switchView('showroom')" class="px-8 py-4 bg-champagne text-obsidian font-mono-tag font-bold text-xs uppercase tracking-widest hover:bg-champagneLight transition gold-glow flex items-center gap-3">
+                                <span>Explore Models</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                            <button onclick="playHeroEngineTeaser()" class="px-6 py-4 border border-goldBorder bg-charcoal/90 text-champagne font-mono-tag text-xs uppercase tracking-widest hover:bg-champagne hover:text-obsidian transition flex items-center gap-2">
+                                <i class="fa-solid fa-volume-high text-xs" id="teaserSoundIcon"></i>
+                                <span>Rev Engine Sound</span>
+                            </button>
+                        </div>
+
+                      
+                        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-titaniumBorder max-w-lg">
+                            <div>
+                                <div class="font-display text-2xl sm:text-3xl font-bold text-white">490 KM/H</div>
+                                <div class="font-mono-tag text-[10px] text-gray-400 mt-1">TOP SPEED INDEX</div>
+                            </div>
+                            <div>
+                                <div class="font-display text-2xl sm:text-3xl font-bold text-champagne">1.9 SEC</div>
+                                <div class="font-mono-tag text-[10px] text-gray-400 mt-1">0-100 KM/H SPRINT</div>
+                            </div>
+                            <div>
+                                <div class="font-display text-2xl sm:text-3xl font-bold text-white">12 GLOBAL</div>
+                                <div class="font-mono-tag text-[10px] text-gray-400 mt-1">ATELIER VAULTS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="lg:col-span-5 relative">
+                        <div class="aura-card p-3 gold-border-glow relative">
+                            <div class="img-zoom h-[420px] bg-carbonPanel relative">
+                                <img id="heroCarImage" src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=1200&q=80" 
+                                     alt="Bugatti Tourbillon" 
+                                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80'"
+                                     class="w-full h-full object-cover">
+                                <div class="absolute bottom-4 left-4 right-4 bg-obsidian/90 backdrop-blur-md p-4 border border-titaniumBorder flex justify-between items-center">
+                                    <div>
+                                        <div id="heroCarTitle" class="font-display text-lg text-white font-bold">Bugatti Tourbillon</div>
+                                        <div id="heroCarEngine" class="font-mono-tag text-[10px] text-champagne">8.3L V16 Naturally Aspirated Hybrid</div>
+                                    </div>
+                                    <button id="heroInspectButton" onclick="openInspectModal('bugatti-tourbillon')" class="p-2.5 border border-champagne text-champagne hover:bg-champagne hover:text-obsidian transition">
+                                        <i class="fa-solid fa-expand text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+           
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-titaniumBorder pb-6">
+                    <div>
+                        <span class="font-mono-tag text-xs text-champagne">THE AURA ARCHIVE</span>
+                        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1">GALLERY</h2>
+                    </div>
+                    <button onclick="switchView('showroom')" class="mt-4 md:mt-0 font-mono-tag text-xs text-champagne hover:underline tracking-widest uppercase">
+                        View All Models <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                    </button>
+                </div>
+
+                <div id="homeFeaturedGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                   
+                </div>
+            </div>
+
+            <section class="home-story-panel exterior-story">
+                <div class="story-number">03</div>
+                <div class="story-copy">
+                    <span class="story-kicker">AURA ATELIER</span>
+                    <h2>Exterior<br><em>in motion.</em></h2>
+                    <p>Every line serves a purpose. Explore sculpted bodywork, configure the finish, and inspect the details from every angle.</p>
+                    <button onclick="switchView('atelier')" class="story-button">Explore exterior <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div class="story-image exterior-image" role="img" aria-label="Performance car on a mountain road"></div>
+            </section>
+
+            <section class="home-story-panel specs-story">
+                <div class="story-number">04</div>
+                <div class="story-copy">
+                    <span class="story-kicker">ENGINEERED WITHOUT COMPROMISE</span>
+                    <h2>Specifications</h2>
+                    <div class="spec-list">
+                        <div><span>POWERTRAIN</span><b id="storySpecEngine">V16 HYBRID</b></div>
+                        <div><span>MAXIMUM POWER</span><b id="storySpecHp">1,800 HP</b></div>
+                        <div><span>0–100 KM/H</span><b id="storySpecAccel">2.0 SEC</b></div>
+                        <div><span>TOP SPEED</span><b id="storySpecSpeed">445 KM/H</b></div>
+                    </div>
+                    <button onclick="switchView('showroom')" class="story-button">View the collection <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div class="spec-art" aria-hidden="true"><span>V12</span><i class="fa-solid fa-gears"></i></div>
+            </section>
+
+            <section class="home-story-panel features-story">
+                <div class="story-number">05</div>
+                <div class="story-image features-image" role="img" aria-label="Yellow supercar in a modern city"></div>
+                <div class="story-copy">
+                    <span class="story-kicker">PRECISION IN EVERY DETAIL</span>
+                    <h2>Features</h2>
+                    <h3>Four-wheel steering</h3>
+                    <p>Sharper response at low speeds. Greater stability at the limit. A driving experience tuned around the person behind the wheel.</p>
+                    <button onclick="switchView('soundlab')" class="story-button">Experience the sound <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            <section class="home-story-panel drive-story">
+                <div class="story-number">06</div>
+                <div class="drive-image" role="img" aria-label="Hypercar at dusk"></div>
+                <div class="story-copy">
+                    <span class="story-kicker">YOUR NEXT DRIVE STARTS HERE</span>
+                    <h2>Ready to go?</h2>
+                    <p>Book a private appointment with the AURA Motors team.</p>
+                    <button onclick="switchView('concierge')" class="story-button">Request a test drive <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+        </section>
+
+        
+        <section id="view-showroom" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+           
+            <div class="mb-8 border-b border-titaniumBorder pb-6">
+                <span class="font-mono-tag text-xs text-champagne">PRIVATE VAULT COLLECTION</span>
+                <h1 class="font-display text-4xl font-bold text-white mt-1">SHOWROOM ALLOCATIONS</h1>
+            </div>
+
+            
+            <div class="aura-card p-6 mb-10 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+                  
+                    <div class="md:col-span-5 relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                        <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search Ferrari, Bugatti, V12, Carbon..."
+                               class="w-full bg-obsidian border border-titaniumBorder pl-11 pr-4 py-3 text-xs font-mono-tag text-white placeholder-gray-500 focus:outline-none focus:border-champagne transition">
+                    </div>
+
+                  
+                    <div class="md:col-span-3">
+                        <select id="categoryFilter" onchange="applyFilters()" class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:outline-none focus:border-champagne transition cursor-pointer">
+                            <option value="ALL">All Categories</option>
+                            <option value="Hypercar">Hypercars</option>
+                            <option value="GT">Grand Tourers</option>
+                            <option value="Super-SUV">Super-SUVs</option>
+                            <option value="EV-Hyper">EV Hyperdrives</option>
+                        </select>
+                    </div>
+
+                   
+                    <div class="md:col-span-4">
+                        <select id="sortBy" onchange="applyFilters()" class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:outline-none focus:border-champagne transition cursor-pointer">
+                            <option value="featured">Sort: Featured Allocations</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="hp-desc">Power: Highest HP First</option>
+                        </select>
+                    </div>
+                </div>
+
+               
+                <div class="pt-4 border-t border-titaniumBorder flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="w-full md:w-1/2 flex items-center space-x-4">
+                        <span class="font-mono-tag text-[11px] text-gray-400 whitespace-nowrap">MAX PRICE:</span>
+                        <input type="range" id="priceSlider" min="300000" max="5000000" step="100000" value="5000000" oninput="updatePriceSliderDisplay(this.value); applyFilters()" class="w-full">
+                        <span id="priceDisplay" class="font-mono-tag text-xs text-champagne font-bold whitespace-nowrap">$5,000,000</span>
+                    </div>
+
+                    <div class="flex items-center space-x-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
+                        <button onclick="setFilterCategoryPill('ALL')" class="pill-btn px-3.5 py-1.5 border text-[10px] font-mono-tag tracking-widest transition bg-champagne text-obsidian border-champagne font-bold">ALL</button>
+                        <button onclick="setFilterCategoryPill('Hypercar')" class="pill-btn px-3.5 py-1.5 border text-[10px] font-mono-tag tracking-widest transition bg-obsidian text-gray-300 border-titaniumBorder hover:border-champagne">HYPERCAR</button>
+                        <button onclick="setFilterCategoryPill('EV-Hyper')" class="pill-btn px-3.5 py-1.5 border text-[10px] font-mono-tag tracking-widest transition bg-obsidian text-gray-300 border-titaniumBorder hover:border-champagne">EV-HYPER</button>
+                        <button onclick="setFilterCategoryPill('GT')" class="pill-btn px-3.5 py-1.5 border text-[10px] font-mono-tag tracking-widest transition bg-obsidian text-gray-300 border-titaniumBorder hover:border-champagne">GT</button>
+                        <button onclick="setFilterCategoryPill('Super-SUV')" class="pill-btn px-3.5 py-1.5 border text-[10px] font-mono-tag tracking-widest transition bg-obsidian text-gray-300 border-titaniumBorder hover:border-champagne">SUV</button>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div id="showroomGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              
+            </div>
+
+            
+            <div class="mt-12 flex flex-col sm:flex-row items-center justify-between border-t border-titaniumBorder pt-6 gap-4">
+                <div id="showroomPaginationInfo" class="font-mono-tag text-xs text-gray-400">
+                    Showing 1-6 of 8 allocations
+                </div>
+                <div id="showroomPaginationBtns" class="flex items-center space-x-2">
+                    
+                </div>
+            </div>
+        </section>
+
+       
+        <section id="view-atelier" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="mb-8 border-b border-titaniumBorder pb-6">
+                <span class="font-mono-tag text-xs text-champagne">BESPOKE ROTATIONAL STUDIO</span>
+                <h1 class="font-display text-4xl font-bold text-white mt-1">360° ATELIER CONFIGURATOR</h1>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+               
+                <div class="lg:col-span-8 aura-card p-6 flex flex-col justify-between relative min-h-[500px]">
+                    <div class="flex items-center justify-between z-10">
+                        <div>
+                            <span class="font-mono-tag text-[10px] text-champagne">ACTIVE SPECIMEN</span>
+                            <h3 id="atelierCarName" class="font-display text-2xl text-white font-bold">Ferrari SF90 XX Stradale</h3>
+                        </div>
+                        <div class="px-3 py-1 border border-titaniumBorder bg-obsidian text-xs font-mono-tag text-champagne flex items-center gap-2">
+                            <i class="fa-solid fa-arrows-rotate animate-spin"></i>
+                            <span>ANGLE: <span id="atelierAngleDeg">0°</span></span>
+                        </div>
+                    </div>
+
+                   
+                    <div class="relative flex-grow flex items-center justify-center my-6 group">
+                        <img id="atelierCarImg" 
+                             src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Ferrari SF90 XX" 
+                             onerror="this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80'"
+                             class="max-h-80 w-auto object-contain transition-all duration-300 filter">
+
+                        
+                        <button onclick="showHotspotPopover('aero')" class="absolute top-1/4 right-1/3 w-7 h-7 rounded-full bg-champagne text-obsidian font-bold text-xs flex items-center justify-center shadow-lg hover:scale-125 transition gold-glow">
+                            1
+                        </button>
+                        <button onclick="showHotspotPopover('hybrid')" class="absolute bottom-1/3 left-1/2 w-7 h-7 rounded-full bg-champagne text-obsidian font-bold text-xs flex items-center justify-center shadow-lg hover:scale-125 transition gold-glow">
+                            2
+                        </button>
+                    </div>
+
+                  
+                    <div class="space-y-3 z-10">
+                        <div class="flex items-center space-x-4 bg-obsidian p-3 border border-titaniumBorder">
+                            <button onclick="rotateAtelier(-1)" class="w-9 h-9 border border-titaniumBorder text-champagne hover:border-champagne transition flex items-center justify-center">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <input type="range" id="atelierAngleSlider" min="0" max="7" value="0" oninput="setAtelierAngle(this.value)" class="w-full">
+                            <button onclick="rotateAtelier(1)" class="w-9 h-9 border border-titaniumBorder text-champagne hover:border-champagne transition flex items-center justify-center">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+              
+                <div class="lg:col-span-4 space-y-6">
+                   
+                    <div class="aura-card p-6">
+                        <span class="font-mono-tag text-xs text-champagne block mb-4">BESPOKE FINISH SHADE</span>
+                        <div class="grid grid-cols-5 gap-3">
+                            <button onclick="setAtelierColor('#D4AF37', 'Liquid Gold', 'none')" class="h-10 border border-champagne bg-[#D4AF37] hover:scale-105 transition" title="Liquid Gold"></button>
+                            <button onclick="setAtelierColor('#08080A', 'Obsidian Black', 'brightness(0.6)')" class="h-10 border border-titaniumBorder bg-[#08080A] hover:scale-105 transition" title="Obsidian Black"></button>
+                            <button onclick="setAtelierColor('#10B981', 'Verde Mantis', 'hue-rotate(90deg)')" class="h-10 border border-titaniumBorder bg-[#10B981] hover:scale-105 transition" title="Verde Mantis"></button>
+                            <button onclick="setAtelierColor('#DC2626', 'Rosso Corsa', 'hue-rotate(320deg)')" class="h-10 border border-titaniumBorder bg-[#DC2626] hover:scale-105 transition" title="Rosso Corsa"></button>
+                            <button onclick="setAtelierColor('#2563EB', 'Monaco Blue', 'hue-rotate(180deg)')" class="h-10 border border-titaniumBorder bg-[#2563EB] hover:scale-105 transition" title="Monaco Blue"></button>
+                        </div>
+                        <div class="font-mono-tag text-xs text-gray-400 mt-4">
+                            FINISH: <span id="atelierColorName" class="text-champagne font-bold">Liquid Gold</span>
+                        </div>
+                    </div>
+
+                   
+                    <div class="aura-card p-6 space-y-4">
+                        <span class="font-mono-tag text-xs text-champagne block">CARBON PACK & WHEELS</span>
+                        
+                        <div class="flex justify-between items-center text-xs font-mono-tag py-2 border-b border-titaniumBorder">
+                            <span class="text-gray-300">Active Carbon Wing</span>
+                            <input type="checkbox" id="wingToggle" checked onchange="toggleAtelierWing()" class="accent-champagne cursor-pointer">
+                        </div>
+
+                        <div class="flex justify-between items-center text-xs font-mono-tag py-2 border-b border-titaniumBorder">
+                            <span class="text-gray-300">Forged Centerlock Rim</span>
+                            <span id="rimDisplay" class="text-champagne font-bold">21" Forged</span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="aura-card p-6">
+                        <span class="font-mono-tag text-xs text-champagne block mb-2">HOTSPOT TECHNICAL SPEC</span>
+                        <div id="hotspotBox" class="text-xs text-gray-300 space-y-2 font-mono-tag">
+                            <p class="font-bold text-white text-sm" id="hotspotTitle">1. Carbon Active Rear Wing</p>
+                            <p id="hotspotBody" class="text-gray-400 font-sans">Dual-element active rear wing producing 530 kg of downforce at 250 km/h with hydraulic actuation.</p>
+                        </div>
+                    </div>
+
+                    <button onclick="switchView('concierge')" class="w-full py-4 bg-champagne text-obsidian font-mono-tag font-bold text-xs uppercase tracking-wider hover:bg-champagneLight transition gold-glow">
+                        Reserve Configured Allocation
+                    </button>
+                </div>
+            </div>
+        </section>
+
+       
+        <section id="view-soundlab" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="mb-8 border-b border-titaniumBorder pb-6">
+                <span class="font-mono-tag text-xs text-champagne">WEB AUDIO API SYNTHESIZER</span>
+                <h1 class="font-display text-4xl font-bold text-white mt-1">ENGINE SOUND LAB & TACHOMETER</h1>
+            </div>
+
+            <div class="aura-card p-8 gold-border-glow max-w-4xl mx-auto space-y-8">
+                
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button onclick="setSynthProfile('v12')" id="btn-synth-v12" class="synth-profile-btn px-5 py-2.5 bg-champagne text-obsidian font-mono-tag text-xs font-bold uppercase transition gold-glow">
+                        6.5L V12 Naturally Aspirated
+                    </button>
+                    <button onclick="setSynthProfile('v8')" id="btn-synth-v8" class="synth-profile-btn px-5 py-2.5 bg-obsidian text-gray-300 border border-titaniumBorder font-mono-tag text-xs font-bold uppercase hover:border-champagne transition">
+                        4.0L V8 Twin-Turbo
+                    </button>
+                    <button onclick="setSynthProfile('w16')" id="btn-synth-w16" class="synth-profile-btn px-5 py-2.5 bg-obsidian text-gray-300 border border-titaniumBorder font-mono-tag text-xs font-bold uppercase hover:border-champagne transition">
+                        8.0L W16 Quad-Turbo
+                    </button>
+                    <button onclick="setSynthProfile('ev')" id="btn-synth-ev" class="synth-profile-btn px-5 py-2.5 bg-obsidian text-gray-300 border border-titaniumBorder font-mono-tag text-xs font-bold uppercase hover:border-champagne transition">
+                        EV Hyperdrive Pulse
+                    </button>
+                </div>
+
+               
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-obsidian p-6 border border-titaniumBorder">
+                    
+                    <div class="text-center space-y-3">
+                        <div class="font-mono-tag text-xs text-gray-400">ENGINE TELEMETRY</div>
+                        <div class="font-display text-5xl font-bold text-champagne" id="rpmDisplay">1,200</div>
+                        <div class="font-mono-tag text-[10px] text-gray-500">RPM • IDLE STATE</div>
+                        
+                      
+                        <div class="w-full bg-carbonPanel h-3 border border-titaniumBorder relative overflow-hidden">
+                            <div id="rpmBar" class="bg-gradient-to-r from-emeraldLive via-champagne to-red-600 h-full w-[15%] transition-all duration-150"></div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="space-y-2">
+                        <div class="font-mono-tag text-[10px] text-gray-400">AUDIO FREQUENCY OSCILLOSCOPE</div>
+                        <canvas id="soundCanvas" class="w-full h-32 bg-carbonPanel border border-titaniumBorder"></canvas>
+                    </div>
+                </div>
+
+                
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 border-t border-titaniumBorder">
+                    <label class="flex items-center space-x-3 cursor-pointer text-xs font-mono-tag text-gray-300">
+                        <input type="checkbox" id="exhaustPopToggle" checked class="accent-champagne w-4 h-4">
+                        <span>Enable Exhaust Overrun Crackles / Pops</span>
+                    </label>
+
+                    <button onmousedown="pressThrottle()" onmouseup="releaseThrottle()" onmouseleave="releaseThrottle()"
+                            ontouchstart="pressThrottle()" ontouchend="releaseThrottle()"
+                            class="w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-champagne via-champagneLight to-amber-600 text-obsidian font-mono-tag font-black text-sm uppercase tracking-widest hover:scale-105 active:scale-95 transition shadow-2xl select-none cursor-pointer gold-glow">
+                        <i class="fa-solid fa-gauge-high mr-2"></i> HOLD THROTTLE PEDAL
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="view-valuation" class="view-panel hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="mb-8 border-b border-titaniumBorder pb-6 text-center">
+                <span class="font-mono-tag text-xs text-champagne">ALGORITHMIC APPRAISAL</span>
+                <h1 class="font-display text-4xl font-bold text-white mt-1">INSTANT TRADE-IN VALUATION</h1>
+            </div>
+
+            <div class="aura-card p-8">
+                <!-- Step Header -->
+                <div class="flex justify-between items-center mb-8 border-b border-titaniumBorder pb-6 font-mono-tag text-xs">
+                    <div id="stepTag1" class="text-champagne font-bold">1. SPECIFICATIONS</div>
+                    <div id="stepTag2" class="text-gray-500">2. MILEAGE & CONDITION</div>
+                    <div id="stepTag3" class="text-gray-500">3. VALUATION OFFER</div>
+                </div>
+
+                
+                <div id="valStep1" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-mono-tag text-gray-400 mb-2">MARQUE / BRAND</label>
+                            <select id="valBrand" class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:border-champagne focus:outline-none">
+                                <option value="Ferrari">Ferrari</option>
+                                <option value="Lamborghini">Lamborghini</option>
+                                <option value="Porsche">Porsche</option>
+                                <option value="Bugatti">Bugatti</option>
+                                <option value="McLaren">McLaren</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono-tag text-gray-400 mb-2">MODEL YEAR</label>
+                            <select id="valYear" class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:border-champagne focus:outline-none">
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono-tag text-gray-400 mb-2">MODEL TRIM & OPTIONS</label>
+                        <input type="text" id="valModel" placeholder="e.g. 911 GT3 RS Weissach Package" class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:border-champagne focus:outline-none">
+                    </div>
+
+                    <button onclick="goToValuationStep(2)" class="w-full py-4 bg-champagne text-obsidian font-mono-tag font-bold text-xs uppercase tracking-wider hover:bg-champagneLight transition gold-glow">
+                        Proceed to Condition Assessment <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+
+               
+                <div id="valStep2" class="space-y-6 hidden">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-mono-tag text-gray-400 mb-2">ODOMETER (KM)</label>
+                            <input type="number" id="valMileage" value="2500" class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:border-champagne focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono-tag text-gray-400 mb-2">SERVICE HISTORY</label>
+                            <select id="valCondition" class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:border-champagne focus:outline-none">
+                                <option value="1.1">Full Factory Dealer Service + Garaged</option>
+                                <option value="1.0">Standard Service History</option>
+                                <option value="0.9">Track Usage / Minor Paint Touchups</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button onclick="goToValuationStep(1)" class="w-1/3 py-4 border border-titaniumBorder text-gray-300 font-mono-tag text-xs uppercase">
+                            Back
+                        </button>
+                        <button onclick="computeValuationResult()" class="w-2/3 py-4 bg-champagne text-obsidian font-mono-tag font-bold text-xs uppercase tracking-wider hover:bg-champagneLight transition gold-glow">
+                            Generate Market Appraisal
+                        </button>
+                    </div>
+                </div>
+
+               
+                <div id="valStep3" class="text-center space-y-6 hidden">
+                    <div class="p-8 border gold-border-glow bg-obsidian">
+                        <span class="font-mono-tag text-xs text-champagne">ESTIMATED APPRAISAL OFFER</span>
+                        <div id="valuationOutput" class="font-display text-4xl sm:text-5xl text-champagne font-bold my-4">
+                            $1,450,000
+                        </div>
+                        <p class="text-xs font-mono-tag text-gray-400">Offer index synchronized with Sotheby's & Aura Vault real-time trade data.</p>
+                    </div>
+
+                    <button onclick="switchView('concierge')" class="w-full py-4 bg-emeraldLive text-obsidian font-mono-tag font-bold text-xs uppercase tracking-wider hover:opacity-90 transition">
+                        Submit Valuation Dossier to Concierge
+                    </button>
+                </div>
+            </div>
+        </section>
+
+      
+        <section id="view-concierge" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="mb-8 border-b border-titaniumBorder pb-6 text-center">
+                <span class="font-mono-tag text-xs text-champagne">PRIVATE CLIENT SERVICES</span>
+                <h1 class="font-display text-4xl font-bold text-white mt-1">RESERVE VIP TEST DRIVE</h1>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+               
+                <div class="aura-card p-8">
+                    <h3 class="font-display text-2xl text-white mb-6 font-bold">Appointment Dossier</h3>
+                    <form onsubmit="handleConciergeSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-mono-tag text-gray-400 mb-1">FULL NAME & TITLE</label>
+                            <input type="text" required placeholder="Sir / Lord / Alex Vance" class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:border-champagne focus:outline-none">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono-tag text-gray-400 mb-1">EMAIL ADDRESS</label>
+                                <input type="email" required placeholder="vance@private.com" class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:border-champagne focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono-tag text-gray-400 mb-1">PHONE / WHATSAPP</label>
+                                <input type="tel" required placeholder="+377 98 00 11 22" class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:border-champagne focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono-tag text-gray-400 mb-1">DESIRED HYPERCAR SPECIMEN</label>
+                            <select id="conciergeCarSelect" class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:border-champagne focus:outline-none">
+                              
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono-tag text-gray-400 mb-1">FLAGSHIP LOCATION</label>
+                            <select class="w-full bg-obsidian border border-titaniumBorder px-4 py-3 text-xs font-mono-tag text-white focus:border-champagne focus:outline-none">
+                                <option>Monaco • Place du Casino</option>
+                                <option>Dubai • DIFC Precinct 4</option>
+                                <option>London • 14 Berkeley Square</option>
+                                <option>Tokyo • Ginza 6-Chome</option>
+                                <option>Zurich • Bahnhofstrasse</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 bg-champagne text-obsidian font-mono-tag font-bold text-xs uppercase tracking-wider hover:bg-champagneLight transition gold-glow">
+                            Submit Private VIP Request
+                        </button>
+                    </form>
+                </div>
+
+               
+                <div class="aura-card p-8 flex flex-col justify-between">
+                    <div>
+                        <span class="font-mono-tag text-xs text-champagne block mb-2">FLAGSHIP ATELIERS</span>
+                        <h3 class="font-display text-2xl text-white font-bold mb-6">Global Presence Map</h3>
+                        
+                        <div class="relative h-64 bg-obsidian border border-titaniumBorder mb-6 overflow-hidden">
+                            <canvas id="mapCanvas" class="w-full h-full object-cover"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-xs font-mono-tag text-gray-400">
+                        <div class="p-3 border border-titaniumBorder bg-obsidian">
+                            <div class="text-champagne font-bold">MONACO ATELIER</div>
+                            <div>Place du Casino, Monte Carlo</div>
+                        </div>
+                        <div class="p-3 border border-titaniumBorder bg-obsidian">
+                            <div class="text-champagne font-bold">DUBAI VAULT</div>
+                            <div>DIFC Precinct Gate 4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    
+        <section id="view-garage" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="mb-8 border-b border-titaniumBorder pb-6 flex justify-between items-end">
+                <div>
+                    <span class="font-mono-tag text-xs text-champagne">SAVED ALLOCATIONS</span>
+                    <h1 class="font-display text-4xl font-bold text-white mt-1">PRIVATE GARAGE</h1>
+                </div>
+                <button onclick="clearGarage()" class="font-mono-tag text-xs text-red-400 hover:underline">
+                    Clear Garage
+                </button>
+            </div>
+
+            <div id="garageEmptyState" class="aura-card p-16 text-center">
+                <i class="fa-solid fa-car-rear text-5xl text-gray-600 mb-4"></i>
+                <h3 class="font-display text-xl text-white mb-2">Garage is Empty</h3>
+                <p class="text-xs font-mono-tag text-gray-400 mb-6">Bookmark allocations in the showroom to track & compare specs.</p>
+                <button onclick="switchView('showroom')" class="px-6 py-3 bg-champagne text-obsidian font-mono-tag font-bold text-xs uppercase gold-glow">
+                    Browse Showroom
+                </button>
+            </div>
+
+            <div id="garageContent" class="hidden space-y-12">
+                <div id="garageGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                   
+                </div>
+
+                
+                <div class="aura-card p-6">
+                    <h3 class="font-display text-2xl text-white font-bold mb-6">Specification Comparison Table</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left font-mono-tag text-xs text-gray-300 border-collapse" id="comparisonTable">
+                           
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+   
+    <div id="inspectModal" class="fixed inset-0 z-50 hidden bg-obsidian/90 backdrop-blur-2xl flex items-center justify-center p-4">
+        <div class="aura-card gold-border-glow w-full max-w-4xl max-h-[90vh] overflow-y-auto p-8 relative space-y-6">
+            <button onclick="closeInspectModal()" class="absolute top-6 right-6 w-8 h-8 border border-titaniumBorder text-gray-300 flex items-center justify-center hover:border-champagne hover:text-champagne transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex flex-col sm:flex-row justify-between border-b border-titaniumBorder pb-4">
+                <div>
+                    <span id="inspectCategory" class="font-mono-tag text-xs text-champagne">HYPERCAR</span>
+                    <h2 id="inspectTitle" class="font-display text-3xl text-white font-bold">Specimen Title</h2>
+                    <div id="inspectChassis" class="font-mono-tag text-[10px] text-gray-500 mt-1">CHASSIS #AUR-0000</div>
+                </div>
+                <div class="mt-2 sm:mt-0">
+                    <div class="font-mono-tag text-[10px] text-gray-400">PRICE</div>
+                    <div id="inspectPrice" class="font-display text-3xl text-champagne font-bold">$0</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="h-64 bg-carbonPanel border border-titaniumBorder overflow-hidden">
+                    <img id="inspectImg" src="" class="w-full h-full object-cover">
+                </div>
+
+                <div class="space-y-3 font-mono-tag text-xs">
+                    <div class="p-3 bg-obsidian border border-titaniumBorder flex justify-between">
+                        <span class="text-gray-400">HORSEPOWER</span>
+                        <span id="inspectHp" class="text-champagne font-bold">1000 HP</span>
+                    </div>
+                    <div class="p-3 bg-obsidian border border-titaniumBorder flex justify-between">
+                        <span class="text-gray-400">ACCELERATION (0-100)</span>
+                        <span id="inspectAccel" class="text-emeraldLive font-bold">2.5s</span>
+                    </div>
+                    <div class="p-3 bg-obsidian border border-titaniumBorder flex justify-between">
+                        <span class="text-gray-400">TOP SPEED</span>
+                        <span id="inspectSpeed" class="text-white font-bold">350 km/h</span>
+                    </div>
+                    <div class="p-3 bg-obsidian border border-titaniumBorder flex justify-between">
+                        <span class="text-gray-400">POWERTRAIN</span>
+                        <span id="inspectEngine" class="text-champagne font-bold">V12</span>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="bookCurrentModalCar()" class="w-full py-4 bg-champagne text-obsidian font-mono-tag font-bold text-xs uppercase gold-glow">
+                Reserve Test Drive For This Specimen
+            </button>
+        </div>
+    </div>
+
+   
+    <footer class="bg-charcoal border-t border-titaniumBorder py-12 text-gray-500 font-mono-tag text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="font-serif-display text-2xl text-white font-bold mb-2">AURA</div>
+                <p class="font-sans text-xs">Bespoke Hypercar Atelier & Vault. Verified global private sales.</p>
+            </div>
+            <div>
+                <div class="text-white font-bold mb-3">GLOBAL FLAGSHIPS</div>
+                <ul class="space-y-1">
+                    <li>Monaco • Monte Carlo</li>
+                    <li>Dubai • DIFC Precinct</li>
+                    <li>London • Mayfair</li>
+                    <li>Tokyo • Ginza</li>
+                </ul>
+            </div>
+            <div>
+                <div class="text-white font-bold mb-3">ATELIER DIRECT</div>
+                <ul class="space-y-1">
+                    <li><button onclick="switchView('showroom')" class="hover:text-champagne">Vault Showroom</button></li>
+                    <li><button onclick="switchView('atelier')" class="hover:text-champagne">360° Studio</button></li>
+                    <li><button onclick="switchView('soundlab')" class="hover:text-champagne">Sound Lab</button></li>
+                </ul>
+            </div>
+            <div>
+                <div class="text-white font-bold mb-3">CONCIERGE</div>
+                <div class="text-champagne font-bold">© 2026 AURA MOTORS</div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="/app.js"></script>
+</body>
+</html>

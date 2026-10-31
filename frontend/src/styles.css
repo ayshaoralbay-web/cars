@@ -1,0 +1,155 @@
+body {
+            background-color: #08080A;
+            color: #E2E8F0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Luxury Custom Aesthetics */
+        .font-display { font-family: 'Syne', sans-serif; letter-spacing: -0.02em; }
+        .font-serif-display { font-family: 'Cinzel', serif; letter-spacing: 0.02em; }
+        .font-mono-tag { font-family: 'Space Grotesk', monospace; letter-spacing: 0.12em; }
+
+        .gold-glow {
+            box-shadow: 0 0 30px -5px rgba(212, 175, 55, 0.25);
+        }
+
+        .gold-border-glow {
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.05);
+        }
+
+        .aura-card {
+            background: #101116;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .aura-card:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Background Subtle Grid Texture */
+        .bg-obsidian-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+
+        /* Range Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: #181920;
+            height: 4px;
+            border-radius: 2px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: #D4AF37;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.8);
+            border: 2px solid #08080A;
+        }
+
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #08080A; }
+        ::-webkit-scrollbar-thumb { background: #181920; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+        .img-zoom {
+            overflow: hidden;
+        }
+        .img-zoom img {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .aura-card:hover .img-zoom img {
+            transform: scale(1.08);
+        }
+
+        /* Angular black-and-yellow editorial design */
+        :root { --lamborghini-yellow: #eadb00; --panel-black: #090909; }
+        html { scroll-behavior: smooth; background: #222; }
+        body { background: #242424; color: #f5f5f5; }
+        body > #app, body > main { background: transparent; }
+        .text-champagne { color: var(--lamborghini-yellow) !important; }
+        .bg-champagne { background-color: var(--lamborghini-yellow) !important; }
+        .border-champagne { border-color: var(--lamborghini-yellow) !important; }
+        .gold-glow { box-shadow: 0 0 28px #eadb0026; }
+        .gold-border-glow { border-color: #eadb0070; box-shadow: inset 0 0 22px #eadb000d; }
+        .aura-card { background: #101010; border-color: #ffffff16; }
+        .aura-card:hover { border-color: #eadb0090; box-shadow: 0 18px 44px #000a, 0 0 24px #eadb0018; }
+        body::before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: radial-gradient(#ffffff12 .7px, transparent .7px); background-size: 24px 24px; opacity: .35; }
+        body > div.bg-charcoal.border-b { width: min(1600px, 94vw); margin: 0 auto; background: #090909; border-color: #ffffff12; }
+        header.sticky { width: min(1600px, 94vw); margin: 0 auto; background: #080808ed; border-color: #ffffff16; }
+        header .max-w-7xl { max-width: 1480px; }
+        header .h-20 { height: 76px; }
+        header .nav-btn { font-size: 11px; letter-spacing: .14em; }
+        .view-panel { width: 100%; }
+        #view-home { padding: 0 0 36px; }
+        .home-hero, .home-story-panel { position: relative; width: min(1600px, 94vw); min-height: min(700px, calc(100vh - 100px)); margin: 28px auto; overflow: hidden; isolation: isolate; background-color: #090909; border: 1px solid #ffffff0d; }
+        .home-hero { min-height: min(760px, calc(100vh - 120px)); background-image: radial-gradient(#ffffff0c .7px, transparent .7px); background-size: 22px 22px; }
+        .home-hero::before, .home-story-panel::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(130deg, transparent 0 54%, #eadb001a 54.2% 57%, transparent 57.2% 100%); }
+        .home-hero > .max-w-7xl { max-width: 1380px; padding-top: 48px; padding-bottom: 48px; }
+        .home-hero h1 { font-size: clamp(3.8rem, 7vw, 7.5rem); line-height: .98; letter-spacing: -.055em; }
+        .home-hero h1 span { color: var(--lamborghini-yellow) !important; background: none; -webkit-text-fill-color: currentColor; font-style: normal; }
+        .home-hero p { max-width: 420px; color: #aaa; }
+        .home-hero .aura-card { padding: 0; border: 0; background: transparent; box-shadow: none; }
+        .home-hero .img-zoom { height: min(58vh, 520px); background: transparent; }
+        .home-hero .img-zoom img { object-fit: contain; mix-blend-mode: screen; filter: contrast(1.08) saturate(1.15); }
+        .home-hero .img-zoom::before { content: ''; position: absolute; inset: 8% -10% 4% 8%; z-index: 1; pointer-events: none; background: linear-gradient(130deg, transparent 0 32%, #eadb00d9 32.2% 44%, transparent 44.2% 60%, #fff2 60.2% 77%, transparent 77.2%); clip-path: polygon(27% 0,100% 0,75% 100%,0 100%); mix-blend-mode: screen; opacity: .62; }
+        .home-hero .img-zoom > div { z-index: 2; }
+        .home-hero .grid.grid-cols-3 { max-width: 560px; }
+        .home-hero .grid.grid-cols-3 > div { border-left: 1px solid #ffffff20; padding-left: 16px; }
+        .home-hero button, .story-button { border-radius: 0; text-transform: uppercase; letter-spacing: .12em; clip-path: polygon(10% 0,100% 0,90% 100%,0 100%); }
+        #view-home > .max-w-7xl { width: min(1380px, 88vw); max-width: none; }
+        #view-home > .max-w-7xl:first-of-type { padding-top: 66px; padding-bottom: 70px; }
+        #homeFeaturedGrid { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
+        #homeFeaturedGrid > .aura-card { padding: 13px; background: #101010; }
+        #homeFeaturedGrid .img-zoom { height: 220px; clip-path: polygon(8% 0,100% 0,92% 100%,0 100%); }
+        #homeFeaturedGrid .img-zoom img { filter: saturate(1.1); }
+        .home-story-panel { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 5vw; padding: clamp(36px, 7vw, 100px); background-image: radial-gradient(#ffffff0d .7px, transparent .7px); background-size: 22px 22px; }
+        .story-number { position: absolute; right: 24px; top: 50%; writing-mode: vertical-rl; transform: translateY(-50%); color: #aaa; font: 11px 'Space Grotesk', sans-serif; letter-spacing: .2em; border-left: 1px solid #ffffff30; padding: 16px 0; }
+        .story-kicker { color: var(--lamborghini-yellow); font: 11px 'Space Grotesk', sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+        .story-copy h2 { margin: 18px 0; color: white; font: 700 clamp(3rem, 6vw, 6rem)/.98 'Syne', sans-serif; letter-spacing: -.05em; }
+        .story-copy h2 em { color: var(--lamborghini-yellow); font-style: normal; }
+        .story-copy h3 { margin: 20px 0 10px; font: 600 20px 'Plus Jakarta Sans', sans-serif; }
+        .story-copy p { max-width: 460px; color: #aaa; font-size: 14px; line-height: 1.8; }
+        .story-button { display: inline-flex; align-items: center; gap: 16px; margin-top: 22px; padding: 13px 28px; background: transparent; border: 1px solid var(--lamborghini-yellow); color: var(--lamborghini-yellow); font: 600 11px 'Space Grotesk', sans-serif; }
+        .story-button:hover { background: var(--lamborghini-yellow); color: #080808; }
+        .story-image, .drive-image { min-height: 360px; background-position: center; background-size: cover; clip-path: polygon(18% 0,100% 0,82% 100%,0 100%); }
+        .exterior-image { background-image: linear-gradient(0deg,#0005,#0000),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=85'); }
+        .features-image { background-image: linear-gradient(0deg,#0004,#0000),url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1400&q=85'); }
+        .spec-list { max-width: 520px; border-top: 1px solid #ffffff27; }
+        .spec-list > div { display: flex; justify-content: space-between; gap: 20px; padding: 15px 0; border-bottom: 1px solid #ffffff20; font: 11px 'Space Grotesk', sans-serif; letter-spacing: .1em; }
+        .spec-list span { color: #8b8b8b; }
+        .spec-list b { color: white; text-align: right; }
+        .spec-art { min-height: 380px; display: grid; place-items: center; position: relative; color: #111; background: linear-gradient(120deg, transparent 0 25%, var(--lamborghini-yellow) 25.2% 72%, transparent 72.2%); }
+        .spec-art span { position: relative; z-index: 1; font: 800 clamp(5rem, 10vw, 10rem) 'Syne',sans-serif; transform: skew(-12deg); }
+        .spec-art i { position: absolute; font-size: clamp(8rem, 17vw, 16rem); color: #aaa; filter: drop-shadow(0 18px 12px #000a); }
+        .features-story { grid-template-columns: 1.1fr .9fr; }
+        .drive-story { grid-template-columns: 1.2fr .8fr; min-height: 580px; }
+        .drive-image { position: absolute; inset: 0 38% 0 0; min-height: 0; opacity: .62; background-image: linear-gradient(90deg,#08080800,#080808 100%),url('https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=1600&q=85'); }
+        .drive-story .story-copy { grid-column: 2; position: relative; }
+        #view-showroom, #view-atelier, #view-soundlab, #view-valuation, #view-concierge, #view-garage { color: #eee; }
+        #view-showroom .aura-card, #view-atelier .aura-card, #view-soundlab .aura-card, #view-valuation .aura-card, #view-concierge .aura-card, #view-garage .aura-card { background: #101010; }
+        @media (max-width: 760px) {
+            .home-hero, .home-story-panel { width: 94vw; min-height: 0; margin: 16px auto; }
+            .home-hero > .max-w-7xl { padding-top: 50px; padding-bottom: 30px; }
+            .home-hero h1 { font-size: clamp(3.2rem, 15vw, 5.4rem); }
+            .home-hero .img-zoom { height: 300px; }
+            #view-home > .max-w-7xl { width: 90vw; }
+            #homeFeaturedGrid { grid-template-columns: 1fr; }
+            .home-story-panel { grid-template-columns: 1fr; padding: 38px 28px; gap: 28px; }
+            .story-image, .drive-image { min-height: 260px; }
+            .features-story .story-image { order: 2; }
+            .spec-art { min-height: 260px; }
+            .drive-image { inset: 0; opacity: .24; }
+            .drive-story .story-copy { grid-column: 1; }
+        }
