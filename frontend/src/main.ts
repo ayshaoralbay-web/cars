@@ -1,3 +1,4 @@
+import "./authSession";
 import { EngineSoundSynth } from "./soundSynth";
 
 const API_BASE = "http://localhost:5001/api/cars";
@@ -26,7 +27,7 @@ const pageIndicator = document.getElementById("pageIndicator") as HTMLSpanElemen
 const searchInput = document.getElementById("searchInput") as HTMLInputElement;
 const categoryFilter = document.getElementById("categoryFilter") as HTMLSelectElement;
 
-// 1. Fetch Cars with Pagination & Filter
+
 async function fetchCars() {
   try {
     const url = new URL(API_BASE);
@@ -45,7 +46,7 @@ async function fetchCars() {
   }
 }
 
-// 2. Render Cards
+
 function renderCars(cars: Car[]) {
   carsGrid.innerHTML = "";
   if (!cars || cars.length === 0) {
@@ -75,7 +76,7 @@ function renderCars(cars: Car[]) {
   });
 }
 
-// 3. Pagination & Filters listeners
+
 function updatePagination(page: number, totalPages: number) {
   currentPage = page;
   pageIndicator.textContent = `Page ${page} of ${totalPages || 1}`;
@@ -107,7 +108,7 @@ categoryFilter.addEventListener("change", (e) => {
   fetchCars();
 });
 
-// 4. Web Audio Engine Initializer
+
 const synth = new EngineSoundSynth();
 const startAudioBtn = document.getElementById("startAudioBtn") as HTMLButtonElement;
 const revEngineBtn = document.getElementById("revEngineBtn") as HTMLButtonElement;
@@ -123,5 +124,5 @@ revEngineBtn.addEventListener("click", () => {
   synth.rev();
 });
 
-// App init
+
 fetchCars();

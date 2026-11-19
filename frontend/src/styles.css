@@ -5,7 +5,7 @@ body {
             overflow-x: hidden;
         }
 
-        /* Luxury Custom Aesthetics */
+        
         .font-display { font-family: 'Syne', sans-serif; letter-spacing: -0.02em; }
         .font-serif-display { font-family: 'Cinzel', serif; letter-spacing: 0.02em; }
         .font-mono-tag { font-family: 'Space Grotesk', monospace; letter-spacing: 0.12em; }
@@ -31,7 +31,7 @@ body {
             box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.15);
         }
 
-        /* Background Subtle Grid Texture */
+       
         .bg-obsidian-grid {
             background-size: 40px 40px;
             background-image: 
@@ -39,7 +39,7 @@ body {
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
         }
 
-        /* Range Slider Styling */
+        
         input[type=range] {
             -webkit-appearance: none;
             background: #181920;
@@ -73,7 +73,7 @@ body {
             transform: scale(1.08);
         }
 
-        /* Angular black-and-yellow editorial design */
+        
         :root { --lamborghini-yellow: #eadb00; --panel-black: #090909; }
         html { scroll-behavior: smooth; background: #222; }
         body { background: #242424; color: #f5f5f5; }
